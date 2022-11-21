@@ -52,6 +52,7 @@ public  class UserInput {
     }
 
     public static Recruiter scanRecruiterDetails(Recruiter recruiter){
+       Recruiter recruiter = new Recruiter();
         System.out.print("Enter First Name : ");
         recruiter.setFirstName(scanner.next());
         System.out.print("Enter Last Name : ");
@@ -62,7 +63,15 @@ public  class UserInput {
         recruiter.setPassword(scanner.next());
         System.out.print("Enter Date Of Birth : ");
         recruiter.setDateOfBirth(scanner.next());
-
+        System.out.print("Enter gender : ");
+        recruiter.setGender(scanner.next());
+        System.out.print("Enter mobile number: ");
+        recruiter.setMobileNumber(scanner.next());
+        System.out.print("Enter Company name : ");
+        recruiter.setCompanyName(scanner.next());
+        System.out.print("Enter Designation : ");
+        recruiter.setDesignation(scanner.next());
+        recruiter.setLoggedIn("true");
         return recruiter;
     }
 
@@ -167,5 +176,69 @@ public  class UserInput {
         }
         Main.jobSeekerMenu();
     }
-
+   
+     public static void modifyRecruiter(Recruiter recruiter) throws SQLException{
+        UserOutput.printUpdatesRequirement(recruiter);
+        System.out.print("Enter the field you wish to update : ");
+        int choice = scanner.nextInt();
+        switch(choice)
+        {
+            case(1):
+            {
+                System.out.print("Enter the new First Name : ");
+                String name=scanner.next();
+                recruiter.setFirstName(name);
+                break;
+            }
+            case(2):
+            {
+                System.out.print("Enter new Last Name : ");
+                String name=scanner.next();
+                recruiter.setLastName(name);
+                break;
+            }
+            case(3):
+            {
+                System.out.print("Enter new email : ");
+                String email=scanner.next();
+                recruiter.setEmail(email);
+                break;
+            }
+            case(4):
+            {
+                System.out.print("Enter new password : ");
+                String password=scanner.next();
+                recruiter.setEmail(password);
+                break;
+            }
+            case(5):
+            {
+                System.out.print("Enter new Date Of Birth (yyyy-MM-dd) : ");
+                String dob=scanner.next();
+                recruiter.setDateOfBirth(dob);
+                break;
+            }
+            case(6):
+            {
+                System.out.print("Enter new Mobile Number : ");
+                String mn=scanner.next();
+                recruiter.setMobileNumber(mn);
+                break;
+            }
+            case(7):
+            {  
+                Main.recruiterMenu();
+            }
+            
+        }
+           if(choice!=7)
+           {
+                recruiter.deleteUser();
+                recruiter.Register();
+                System.out.println("Successfully updated");
+           }
+           Main.jobSeekerMenu();
+        
+    }
+  
 }
